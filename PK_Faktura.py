@@ -8,7 +8,7 @@ import io
 import datetime as dt
 from pandas import ExcelWriter
 
-def PK_FUCKtura(df_blocks, df_calls):
+def PK_Faktura(df_blocks, df_calls):
     #Формируем датафрейм со всеми L-блокировками
     df_blocks['ОСНОВНОЙ НОМЕР'] = df_blocks['ОСНОВНОЙ НОМЕР'].str[-10:]
     df_blocks['ДОПОЛНИТЕЛЬНЫЕ НОМЕРА'] = df_blocks['ДОПОЛНИТЕЛЬНЫЕ НОМЕРА'].str[-10:]
@@ -98,7 +98,7 @@ def Start():
             df_calls = pd.read_excel(io.BytesIO(uploaded_file2.content), header = 2, usecols = [0, 1, 2, 6, 16, 22], dtype = ({'Unnamed: 0' : str}))
             for i in range(1,len(uploaded_file2),1):
                 df_calls = pd.concat([df_calls, pd.read_excel(io.BytesIO(uploaded_file2.content), header = 2, usecols = [0, 1, 2, 6, 16, 22], dtype = ({'Unnamed: 0' : str}))])
-            result = PK_FUCKtura(df_blocks, df_calls)
+            result = PK_Faktura(df_blocks, df_calls)
 
             if result[0].empty and result[1].empty and result[2].empty and result[3].empty:
                 print('Ошибки отсутствуют')
